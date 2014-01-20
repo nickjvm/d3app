@@ -153,7 +153,7 @@
                       "+pin.data.City+", " + pin.data.State + " " + pin.data.Zip+"</p>\
                       <p>"+pin.data.Phone.replace(/(\w{3})(\w{3})(\w{4})/, '\($1\) $2-$3')+"<br/>\
                       <a href='"+pin.data.URL+"'>"+pin.data.URL+"</a></p>\
-                      <img src='"+img+"'/>";
+                      <img height='100' src='"+img+"'/>";
                   //console.log(pin.position);
                   // Replace our Info Window's content and position 
                   infowindow.setContent(contentString); 
@@ -168,7 +168,7 @@
           </head>
           <body>
             <div id="loading"></div>
-            <div id="search" class="col-md-6">
+            <div id="search" class="col-sm-6">
               <form class="form-inline" id="query">
                 <input class="form-control" name="q" id="q" type="text" placeholder="Search by city or zip code"/>
                 <button type="submit" class="btn btn-primary">Search</button>
@@ -182,9 +182,14 @@
           <script src="<?php assetURL(); ?>js/main.js"></script>
           <script>
           $(document).ready(function() {
+            $("#q").on("focus",function(e) {
+              $(this).val("");
+            })
             $("#query").on("submit",function(e) {
               e.preventDefault();
+              $("#q").blur();
               citysearch($("#q").val());
+
             })
           })
           </script>
